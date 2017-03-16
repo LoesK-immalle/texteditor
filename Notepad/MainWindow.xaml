@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Notepad"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Notepad **" Height="350" Width="525">
+    <DockPanel>
+        <Menu DockPanel.Dock ="Top">
+            <MenuItem Name="fileMenu" Header="_File">
+                <MenuItem Name="fileOpen" Header="_Open" Click="fileOpen_Click"/>
+                <MenuItem Name="fileSave" Header="_Save" Click="fileSave_Click"/>
+                <MenuItem Name="fileSaveAs" Header="_Save As" Click="fileSaveAs_Click"/>
+                <Separator />
+                <MenuItem Name="exit" Header="E_xit" Click="exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Click="MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid DockPanel.Dock="Bottom">
+            <TextBox Name="textBox"/> 
+        </Grid>
+    </DockPanel>
 </Window>

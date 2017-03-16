@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,68 @@ namespace Notepad
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string currentFile = "";
+        private string initialDir;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            initialDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
+        private void fileOpen_Click(object sender, RoutedEventArgs e)
+        {
+            StreamReader inputStream;
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = initialDir;
+            if (dialog.ShowDialog() == true)
+            {
+                currentFile = dialog.FileName;
+                inputStream = File.OpenText(currentFile);
+                textBox.Text = inputStream.ReadToEnd();
+                inputStream.Close();
+            }
+        }
+
+        private void fileSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentFile == "")
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.InitialDirectory = initialDir;
+                if (dialog.ShowDialog() == true)
+                {
+                    currentFile = dialog.FileName;
+                }
+            }
+            StreamWriter outputStream = File.CreateText(currentFile);
+            outputStream.Write(textBox.Text);
+            outputStream.Close();
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void fileSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            StreamWriter outputStream;
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = initialDir;
+            if (dialog.ShowDialog() == true)
+            {
+                currentFile = dialog.FileName;
+                outputStream = File.CreateText(currentFile);
+                outputStream.Write(textBox.Text);
+                outputStream.Close();
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Dit is een ripoff van de normale notepad. Veel plezier!");
         }
     }
 }
