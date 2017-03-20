@@ -15,12 +15,28 @@
                 <Separator />
                 <MenuItem Name="exit" Header="E_xit" Click="exit_Click"/>
             </MenuItem>
+            <MenuItem Name="toolsMenu" Header="_Tools">
+                <MenuItem Name="parseMenu" Header="_Parse" Click="parseMenu_Click"/>
+            </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About" Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock>Status</TextBlock>
+        </StatusBar>
         <Grid DockPanel.Dock="Bottom">
-            <TextBox Name="textBox"/> 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="textBox" Grid.Column="0"></TextBox>
+            <GridSplitter HorizontalAlignment="Right" 
+                      VerticalAlignment="Stretch" 
+                      Grid.Column="1" ResizeBehavior="PreviousAndNext"
+                      Width="5" Background="#FFBCBCBC"/>
+            <DataGrid x:Name="people" Grid.Column="2"></DataGrid>
         </Grid>
     </DockPanel>
 </Window>

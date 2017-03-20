@@ -24,12 +24,17 @@ namespace Notepad
     {
         private string currentFile = "";
         private string initialDir;
+        List<Persoon> personen = new List<Persoon>();
 
         public MainWindow()
         {
             InitializeComponent();
 
             initialDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            personen.Add(new Persoon { Voornaam = "Willy", Achternaam = "Janssens", GeboorteDatum = new DateTime(1990, 1, 2) });
+            personen.Add(new Persoon { Voornaam = "James", Achternaam = "Moriarty", GeboorteDatum = new DateTime(1898, 7, 3) });
+            people.ItemsSource = personen;
+
         }
 
         private void fileOpen_Click(object sender, RoutedEventArgs e)
@@ -84,6 +89,11 @@ namespace Notepad
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Dit is een ripoff van de normale notepad. Veel plezier!");
+        }
+
+        private void parseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
