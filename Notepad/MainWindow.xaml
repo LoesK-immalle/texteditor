@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="textBox" Grid.Column="0"></TextBox>
+            <TextBox x:Name="textBox" Grid.Column="0" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
             <GridSplitter HorizontalAlignment="Right" 
                       VerticalAlignment="Stretch" 
                       Grid.Column="1" ResizeBehavior="PreviousAndNext"
