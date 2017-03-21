@@ -25,6 +25,7 @@ namespace Notepad
         private string currentFile = "";
         private string initialDir;
         List<Persoon> personen = new List<Persoon>();
+        
 
         public MainWindow()
         {
@@ -93,29 +94,28 @@ namespace Notepad
 
         private void parseMenu_Click(object sender, RoutedEventArgs e)
         {
-            //readalllines document en voeg gegevens toe aan persoon, vervolgens deze persoon toevoegen aan lijst
-            //List<Persoon> parsedPersonen = new List<Persoon>();
+            List<Persoon> parsedPersonen = new List<Persoon>();
 
-            //string[] filedata = fileContents.Text.Split('\n');
-            //try
-            //{
-            //    foreach (var row in filedata)
-            //    {
-            //        string[] fields = row.Split(';');
-            //        var p = new Persoon();
-            //        p.Voornaam = fields[0];
-            //        p.Achternaam = fields[1];
-            //        p.GeboorteDatum = DateTime.Parse(fields[2]);
-            //        parsedPersonen.Add(p);
-            //    }
-            //}
-            //catch (Exception exc)
-            //{
-            //    MessageBox.Show(exc.ToString());
-            //}
+            string[] filedata = textBox.Text.Split('\n');
+            try
+            {
+                foreach (var row in filedata)
+                {
+                    string[] fields = row.Split(';');
+                    var p = new Persoon();
+                    p.Voornaam = fields[0];
+                    p.Achternaam = fields[1];
+                    p.GeboorteDatum = DateTime.Parse(fields[2]);
+                    parsedPersonen.Add(p);
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.ToString());
+            }
 
 
-            //people.ItemsSource = parsedPersonen;
+            people.ItemsSource = parsedPersonen;
         }
     }
 }
