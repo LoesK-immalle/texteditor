@@ -101,12 +101,28 @@ namespace Notepad
             {
                 foreach (var row in filedata)
                 {
-                    string[] fields = row.Split(';');
-                    var p = new Persoon();
-                    p.Voornaam = fields[0];
-                    p.Achternaam = fields[1];
-                    p.GeboorteDatum = DateTime.Parse(fields[2]);
-                    parsedPersonen.Add(p);
+                    string[] fields = row.Trim().Split(';');
+
+                    if (fields.Length != 3)
+                    {
+                        MessageBox.Show(
+                            String.Format("Couldn't parse [{0}]. Number of fields: {1}.",
+                                row.Trim(),
+                                fields.Length)
+                        );
+                    }
+                    else if (row.Trim() == "")
+                    {
+                        row.Remove(0, row.Length);
+                    }
+                    else
+                    {
+                        var p = new Persoon();
+                        p.Voornaam = fields[0];
+                        p.Achternaam = fields[1];
+                        p.GeboorteDatum = DateTime.Parse(fields[2]);
+                        parsedPersonen.Add(p);
+                    }
                 }
             }
             catch (Exception exc)
@@ -114,8 +130,18 @@ namespace Notepad
                 MessageBox.Show(exc.ToString());
             }
 
-
             people.ItemsSource = parsedPersonen;
+        }
+
+        private void showPersonenList_Click(object sender, RoutedEventArgs e)
+        {
+            string list = "";
+            foreach (var p in personen)
+            {
+                list += p.ToString();
+                list += Environment.NewLine;
+            }
+            MessageBox.Show(list);
         }
     }
 }

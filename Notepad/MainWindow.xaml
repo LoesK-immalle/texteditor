@@ -17,6 +17,7 @@
             </MenuItem>
             <MenuItem Name="toolsMenu" Header="_Tools">
                 <MenuItem Name="parseMenu" Header="_Parse" Click="parseMenu_Click"/>
+                <MenuItem Name="showPersonenList" Header="_Show" Click="showPersonenList_Click"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About" Click="MenuItem_Click"/>
